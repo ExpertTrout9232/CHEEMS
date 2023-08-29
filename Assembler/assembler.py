@@ -3,7 +3,7 @@ import re
 
 #Made by ExpertTrout9232 for CHEEMS - An 8 bit 1.25 Hz redstone cpu by TosinV1
 
-code = open("input.cheems").read().splitlines() #Formating file
+code = open("input.cheems").read().splitlines() #Formatting file
 code = list(filter(None, code))
 code = list(map(str.strip, code))
 index = 0 #Initialization

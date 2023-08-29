@@ -6,3 +6,4 @@ To do:
 - Error handling
 - Code formatting (Deleting comments, translating defined values, deleting headers, etc.)
 - Emulator
+- Add programs

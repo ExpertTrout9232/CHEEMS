@@ -67,6 +67,14 @@ other = {
     "$6":"110\n",
     "$7":"111\n"
 }
+while index < len(code): #Preparation loop
+    instruction = code[index]
+    if instruction[0:1] == ".":
+        for i in range(len(code)):
+            code[i] = code[i].replace("$" + instruction[1:], str(index))
+        del code[index]
+    index += 1
+index = 0
 while index < len(code): #Main loop
     instruction = code[index].split(' ')
     if len(instruction) == 1:
@@ -82,4 +90,3 @@ while index < len(code): #Main loop
     with open("machine codes\output.bin", 'a') as file: #File saving
         file.write(str(opcode) + str(argument))
     index += 1
-    

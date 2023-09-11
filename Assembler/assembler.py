@@ -4,8 +4,11 @@ import re
 #Made by ExpertTrout9232 for CHEEMS - An 8 bit 1.25 Hz redstone cpu by TosinV1
 
 code = open("input.cheems").read().splitlines() #Formatting file
-code = list(filter(None, code))
 code = list(map(str.strip, code))
+for i in range(len(code)):
+    code[i] = code[i].split("//")[0]
+code = list(map(str.strip, code))
+code = list(filter(None, code))
 index = 0 #Initialization
 instruction = 0
 opcode = 0
@@ -65,14 +68,34 @@ other = {
     "$4":"100\n",
     "$5":"101\n",
     "$6":"110\n",
-    "$7":"111\n"
+    "$7":"111\n",
+    "HALT":"000\n",
+    "RESET":"001\n",
+    "DISFLAG":"010\n",
+    "EQ":"000\n",
+    "GE":"001\n",
+    "CF":"010\n",
+    "NE":"011\n",
+    "!EQ":"100\n",
+    "LT":"101\n",
+    "!CF":"110\n",
+    "PO":"111\n"
 }
 while index < len(code): #Preparation loop
     instruction = code[index]
+    if instruction.upper()[0:7] == "@DEFINE":
+        instruction = instruction.split(' ')
+        for i in range(len(code)):
+            code[i] = re.sub(r'\b{}\b'.format(re.escape(instruction[2])), instruction[1], code[i])
+        del code[index]
+        index -= 1        
     if instruction[0:1] == ".":
         for i in range(len(code)):
             code[i] = code[i].replace("$" + instruction[1:] + "$", str(index))
         del code[index]
+        index -= 1
+    if instruction[0:1] == "~":
+        code[index] = str(index + int(instruction[1:]))
     index += 1
 index = 0
 while index < len(code): #Main loop
@@ -89,4 +112,4 @@ while index < len(code): #Main loop
         argument = other.get(instruction[1].upper())
     with open("machine codes\output.bin", 'a') as file: #File saving
         file.write(str(opcode) + str(argument))
-    index += 1
+    index += 1 

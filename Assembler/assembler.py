@@ -71,7 +71,7 @@ while index < len(code): #Preparation loop
     instruction = code[index]
     if instruction[0:1] == ".":
         for i in range(len(code)):
-            code[i] = code[i].replace("$" + instruction[1:], str(index))
+            code[i] = code[i].replace("$" + instruction[1:] + "$", str(index))
         del code[index]
     index += 1
 index = 0

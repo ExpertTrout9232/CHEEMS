@@ -86,7 +86,7 @@ while index < len(code): #Preparation loop
     if instruction.upper()[0:7] == "@DEFINE":
         instruction = instruction.split(' ')
         for i in range(len(code)):
-            code[i] = re.sub(r'\b{}\b'.format(re.escape(instruction[2])), instruction[1], code[i])
+            code[i] = re.sub(r'\b{}\b'.format(re.escape(instruction[1])), instruction[2], code[i])
         del code[index]
         index -= 1        
     if instruction[0:1] == ".":

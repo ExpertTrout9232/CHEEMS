@@ -32,7 +32,8 @@ while byte < len(machine_code): #Preparation loop
         x = 0
         z -= 2
 
-lines = abs(z) #Initialization for main loop
+lines = int(abs(z) / 8) + 1 #Initialization for main loop
+linesi = 0
 z = 0
 zi = 0
 x = 0
@@ -43,16 +44,16 @@ instruction3 = 0
 instruction4 = 0
 ss = 0
 barrels = [
-            'minecraft:stone', 'minecraft:barrel[facing=up]{CustomName:"1",Items:[{id:"minecraft:golden_axe",Count:1}]}',
-            'minecraft:barrel[facing=up]{CustomName:"2",Items:[{id:"minecraft:golden_axe",Count:2}]}', 'minecraft:barrel[facing=up]{CustomName:"3",Items:[{id:"minecraft:golden_axe",Count:4}]}',
-            'minecraft:barrel[facing=up]{CustomName:"4",Items:[{id:"minecraft:golden_axe",Count:6}]}', 'minecraft:barrel[facing=up]{CustomName:"5",Items:[{id:"minecraft:golden_axe",Count:8}]}',
-            'minecraft:barrel[facing=up]{CustomName:"6",Items:[{id:"minecraft:golden_axe",Count:10}]}', 'minecraft:barrel[facing=up]{CustomName:"7",Items:[{id:"minecraft:golden_axe",Count:12}]}',
-            'minecraft:barrel[facing=up]{CustomName:"8",Items:[{id:"minecraft:golden_axe",Count:14}]}', 'minecraft:barrel[facing=up]{CustomName:"9",Items:[{id:"minecraft:golden_axe",Count:16}]}',
-            'minecraft:barrel[facing=up]{CustomName:"10",Items:[{id:"minecraft:golden_axe",Count:18}]}', 'minecraft:barrel[facing=up]{CustomName:"11",Items:[{id:"minecraft:golden_axe",Count:20}]}',
-            'minecraft:barrel[facing=up]{CustomName:"12",Items:[{id:"minecraft:golden_axe",Count:22}]}', 'minecraft:barrel[facing=up]{CustomName:"13",Items:[{id:"minecraft:golden_axe",Count:24}]}',
-            'minecraft:barrel[facing=up]{CustomName:"14",Items:[{id:"minecraft:golden_axe",Count:26}]}', 'minecraft:barrel[facing=up]{CustomName:"15",Items:[{id:"minecraft:golden_axe",Count:27}]}'
+            'minecraft:stone', 'minecraft:barrel{Items:[{Slot:0,Slot:0,id:"minecraft:totem_of_undying",Count:1}]}',
+            'minecraft:barrel{Items:[{Slot:0,id:"minecraft:totem_of_undying",Count:2}]}', 'minecraft:barrel{Items:[{Slot:0,id:"minecraft:totem_of_undying",Count:4}]}',
+            'minecraft:barrel{Items:[{Slot:0,id:"minecraft:totem_of_undying",Count:6}]}', 'minecraft:barrel{Items:[{Slot:0,id:"minecraft:totem_of_undying",Count:8}]}',
+            'minecraft:barrel{Items:[{Slot:0,id:"minecraft:totem_of_undying",Count:10}]}', 'minecraft:barrel{Items:[{Slot:0,id:"minecraft:totem_of_undying",Count:12}]}',
+            'minecraft:barrel{Items:[{Slot:0,id:"minecraft:totem_of_undying",Count:14}]}', 'minecraft:barrel{Items:[{Slot:0,id:"minecraft:totem_of_undying",Count:16}]}',
+            'minecraft:barrel{Items:[{Slot:0,id:"minecraft:totem_of_undying",Count:18}]}', 'minecraft:barrel{Items:[{Slot:0,id:"minecraft:totem_of_undying",Count:20}]}',
+            'minecraft:barrel{Items:[{Slot:0,id:"minecraft:totem_of_undying",Count:22}]}', 'minecraft:barrel{Items:[{Slot:0,id:"minecraft:totem_of_undying",Count:24}]}',
+            'minecraft:barrel{Items:[{Slot:0,id:"minecraft:totem_of_undying",Count:26}]}', 'minecraft:barrel{Items:[{Slot:0,id:"minecraft:totem_of_undying",Count:27}]}'
             ]
-while lines != 0: #Main loop
+while lines > linesi: #Main loop
     y = -1
     while y > -16:
         ss = 0
@@ -83,7 +84,7 @@ while lines != 0: #Main loop
         x = 0
         z -= 8
         zi -= 2
-        lines = int(lines / 8)
+        linesi += 1 
 
 if not os.path.exists("schematics"):
     os.mkdir("schematics")
